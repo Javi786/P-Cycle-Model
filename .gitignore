@@ -1,0 +1,17 @@
+evolve
+*.swp
+*.orig
+*.dat
+*.txt
+*.ps
+*.dot
+*.o
+*.png
+*.pdf
+*.gv
+*.tar.gz
+output/*
+paper/*
+*.eps
+*/__pycache__/
+*.pyc

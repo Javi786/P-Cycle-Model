@@ -1,0 +1,88 @@
+{
+    Species: ["p"],
+    Reservoirs: {
+        Atmosphere: {
+            InitMasses: {p: 2.8e7}, #to be changed for pdependence
+            },
+        Oceans: {
+            InitMasses: {p: 9.3e13},
+            },
+        OCrust: {
+            InitMasses: {p: 4.5e18},
+            },
+        Sediments: {
+            InitMasses: {p: 4.0e18},
+            },
+        UMantle: {
+        InitMasses: {p: 2.2e20},
+        },
+        LMantle: {
+        InitMasses: {p: 6e20},
+        },
+        CCrust: {
+            InitMasses: {
+            p: 1.4e19},
+            }
+            },
+   
+   Processes:
+    ["Erosion","WindErosion","Subduction","Volcanism", "Precipitation","CometDelivery","Convection","HydrothermalCirculation",],
+   
+   Erosion: {uniform_growth: false,
+   alpha: 2.18e-4,}, #m/yr, riverine erosion rate
+       
+    WindErosion: {uniform_growth: false, 
+    beta: 2.7e-5, # kg.m⁻².yr⁻¹ wind erosion rate
+    satur: 2.8e7, #kg, saturation value of the atmosphere (not well constrained)
+    moved_Oc_vol: 2.5e10,}, # Ocean Volume of water moved into the atmosphere as sea spray per year (in m³) (0.25 - 2.5 x 10^11 liters of water are moved per year as sea spray)
+
+   Precipitation: {max_conc: 2.2e-6, #Molar (mol of P/liter), Mass maximum concentration of the ocean (to be varied)
+   VOcean: 1.35e21, #Liter, totel volume of the oceans
+   flux: 0,}, #1.05e10,},
+
+   Rainout: {flux: 3.19e8, #kg/yr, constant rainout flux (constrained?) #Not being used
+   uniform_growth: false,}, #not relevant
+   
+   
+   CometDelivery: {
+        tau: 0.15e9, #yr
+        F0: 2e5, #present-day flux, kg/yr value (well constrained)
+        F1: 2e8, # LHB rate, kg/yr (x1000 larger than F0, ???)
+    },
+   
+   HydrothermalCirculation: {
+        tau: 150e6, # Exp decay constant, yr
+        F0: 1e-7,   # Evolution of fraction of circulated ocean water, present-day
+        F1: 3e-7,   # Evolution of fraction of circulated ocean water, Early earth (from Laneuville et al)
+        F_p: 0.5,   # Fraction of circulated P that gets fixed on OC
+    },
+   
+   Convection: {
+        tau: 1e9,  # Exp decay constant, yr
+        F0: 1e-8,  # Evolution of fraction of circulated mantle (from Laneuville et al)
+        F1: 3e-8,  # Evolution of fraction of circulated mantle (from Laneuville et al)
+    },
+   
+   Subduction: {
+        accretion: 0.30 , #fraction of accreted sediments, constant over time?
+        tau: 100e6,  #timescale of total surface recycling
+    },
+   
+   Volcanism: {
+        F_arc: 5, #km³/yr, constant over time?
+        F_MORB: 20, #km³/yr, constant over time?
+        F_hotspot: 2.5, #km³/yr, constant over time?
+        Factor: 3, #factor of initial conditions (how many times more active the volcanism initially was)
+        tau: 150e6, # Exp decay constant, yr
+        density: 2800,
+    },
+
+
+    atm_ox: 0.2,
+    man_ox: 0.2,
+    OutFolder: "output",
+    Tmax: 4500e6,
+    Output: 10e6,
+    Timestep: 5e3,
+    Debug: False
+}
