@@ -38,3 +38,36 @@ modifiable (although, it might be useful for modeling in different planets). Adv
 them. This will help you understand where new settings might have gone wrong. If you successfully run the program, a large matrix will data will begin to output.
 This data will be automatically saved in a text file called "out_nfig" which should be saved inside the same folder where the code is saved in your reposito-
 ry. To access it, go to "output" > "out_nfig". With this output text file, you may graph the results using whichever software you are most comfortable with.
+
+For random seedings:
+0 - Adapt the paths to your own device, on the files "run_multi_config.py", and 
+
+1 - Choose reservoirs, values and number of config files to be generated on seedings.py
+2 - Open terminal on main and type "make seedings"   
+
+-> this will create the directory "seedings_files" and its subfile "Results"; 
+-> Then runs "seedings.py" and redirects the generated config files into the seedings_file directory
+-> Creates an evolve file
+-> runs "run_multi_config.py" which runs simulations for all the config-files (directed into the "output" directory)
+
+3 - Open terminal on "output" and copy the matrix-files, results of the simulations, into the "/seedings_files/Results" directory, by typing 
+
+	$ cp *.dot /home/rafael/Desktop/BMSIS_Internship2021/P-Cycle-main/seedings_files/Results 
+	$ cp *.txt /home/rafael/Desktop/BMSIS_Internship2021/P-Cycle-main/seedings_files/Results
+	
+	(remember to adapt the paths)
+	
+and then remove the now superfluous material on the output directory, by
+
+	$ rm *.yaml
+	$ rm *.txt
+	$ rm *.dot
+	$ cd ..	
+	
+4 - Create the plot by runing the .py file "generate_single_plot.py", by typing
+
+	$ python3 processing/generate_single_plot.py seedings_files/Results/*.txt -c Atmosphere0 -c CCrust0 
+	
+	(change the reservoirs names to obtain the ones in study)
+	
+------> If it runs smoothly, the plot should appear on the main directory
