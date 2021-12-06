@@ -43,6 +43,7 @@ For random seedings:
 0 - Adapt the paths to your own device, on the files "run_multi_config.py", and 
 
 1 - Choose reservoirs, values and number of config files to be generated on seedings.py
+
 2 - Open terminal on main and type "make seedings"   
 
 -> this will create the directory "seedings_files" and its subfile "Results"; 
