@@ -3,6 +3,7 @@ public:
     CometDelivery(string name): Module(name) { init(); }
 
     double p, tau, F0, F1, max_conc, VOcean; //this
+    bool uniform_growth;
 
     void init(void) {
         this->links.push_back("Space -> Oceans2");
@@ -16,6 +17,7 @@ public:
         tau = config->data["CometDelivery"]["tau"].as<double>();
         max_conc = config->data["Precipitation"]["max_conc"].as<double>(); //this
         VOcean = config->data["Precipitation"]["VOcean"].as<double>(); //Volume of the Ocean in Liters 
+        uniform_growth = config->data["Erosion"]["uniform_growth"].as<bool>();
     }
 
     void evolve(void) {
@@ -23,7 +25,6 @@ public:
         int sed = s->reservoir_map["Sediments"];   //this
         int co = s->reservoir_map["CCrust"];
         
-        double uniform_growth = false;
         
         double relative_area;
         if (s->time < 1.5e9) { 
@@ -31,7 +32,7 @@ public:
         } else {
             relative_area = 0.4*(0.66 + 0.34*(s->time-1.5e9)/3e9);
         }
-        if (uniform_growth) { relative_area = 0.4*(0.02 + 0.98*s->time/4.5e9) ;
+        if (uniform_growth) { relative_area = 0.4 - 2.613e-3*exp(- s->time/0.15e9); 
         }
         
         double max_mass = max_conc*VOcean*0.031;

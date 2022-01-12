@@ -16,7 +16,8 @@ public:
         this->init_fluxes(2);
 
         beta = config->data["WindErosion"]["beta"].as<double>(); //Rate of continental wind erosion - kg.m⁻².yr⁻¹ (current day ~ 0.014 kg.m⁻².yr⁻¹)
-        uniform_growth = config->data["WindErosion"]["uniform_growth"].as<bool>(); //Don't know what it is or does
+        
+        uniform_growth = config->data["Erosion"]["uniform_growth"].as<bool>();
         
         satur = config->data["WindErosion"]["satur"].as<double>(); // Saturation mass of P in the Atmosphere
         
@@ -40,7 +41,7 @@ public:
         } else {
             relative_area = 0.4*(0.66 + 0.34*(s->time-1.5e9)/3e9);
         }
-        if (uniform_growth) { relative_area = 0.4*(0.02 + 0.98*s->time/4.5e9); } //Parametrization of Emerged land growth
+        if (uniform_growth) { relative_area = 0.4 - 2.613e-3*exp(- s->time/0.15e9);  } //Parametrization of Emerged land growth
 
         //double concentration = s->world[co]->masses[p]/(relative_area*M0); //Mass concentration of P in the continents
         double flux = beta*A0*relative_area; //wind erosion per year

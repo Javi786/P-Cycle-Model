@@ -20,14 +20,14 @@ class Parameters:
         PARAMS['LMantle0'] = Axis(1, 'P content [kg]', earthscale= 6e20)
         #PARAMS['UMantle0'] = Axis(1e20, 'P content [x$10^{20}$ kg]', earthscale= 2.2)
         PARAMS['UMantle0'] = Axis(1, 'P content [kg]', earthscale= 2.2e20)
-        PARAMS['OCrust0'] = Axis(1, 'P content [kg]', earthscale= 4.5e18)  
+        PARAMS['OCrust0'] = Axis(1, 'P content [kg]', earthscale= 7.2e18)  
         PARAMS['CCrust0'] = Axis(1, 'P content [kg]', earthscale= 1.4e19)    
         PARAMS['Sediments0'] = Axis(1, 'P content [kg]', earthscale= 4e18)
         
 
-        PARAMS['Volcanism0'] = Axis(1, 'Volcanic flux of P [kg $yr^{-1}$]', earthscale=0.373e10)
-        PARAMS['Volcanism1'] = Axis(1, 'Volcanic flux of P [kg $yr^{-1}$]', earthscale=1.49e10)
-        PARAMS['Volcanism2'] = Axis(1, 'Volcanic flux of P [kg $yr^{-1}$]', earthscale=0.25e10)
+        PARAMS['Volcanism0'] = Axis(1e10, 'P-Flux [x$10^{10}$ kg $yr^{-1}$]', earthscale=1.85)
+        PARAMS['Volcanism1'] = Axis(1e10, 'P-Flux [x$10^{10}$ kg $yr^{-1}$]', earthscale=7.3)
+        PARAMS['Volcanism2'] = Axis(1e10, 'P-Flux [x$10^{10}$ kg $yr^{-1}$]', earthscale= 1.15)
         PARAMS['Subduction0'] = Axis(1, 'flux of P [kg $yr^{-1}$]', earthscale=8.22e10)
         PARAMS['Subduction1'] = Axis(1, 'Accretionn flux of P [kg $yr^{-1}$]', earthscale=1.209e10)
         PARAMS['Convection0'] = Axis(1e13, 'flux of P [kg $yr^{-1}$]', earthscale=2.41)
@@ -42,7 +42,7 @@ class Parameters:
         #PARAMS['Erosion1'] = Axis(1, 'Relative continental area', earthscale=0.35)
         PARAMS['WindErosion0'] = Axis(1, 'Erosion rate [kg $yr^{-1}$]', earthscale=2.07e9)
         PARAMS['Precipitation0'] = Axis(1, 'Precipitation Rate [kg $yr^{-1}$]', earthscale=2.8e9)
-        PARAMS['CometDelivery0'] = Axis(1, 'ET Input Rate [kg P $yr^{-1}$]', earthscale=2e5)
+        PARAMS['CometDelivery0'] = Axis(1e5, 'ET Input Rate [x$10^{5}$ kg P $yr^{-1}$]', earthscale=2)
 
 #        PARAMS['Atmosphere2'] = {'norm':1, 'ylabel':'N-content [kg]', 'isLog':True, 'Earth':1e15}
 #        PARAMS['BioticContribution0'] = {'norm':1, 'ylabel':'N-content [kg]', 'isLog':True, 'Earth':1}

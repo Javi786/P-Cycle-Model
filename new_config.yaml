@@ -8,7 +8,7 @@
             InitMasses: {p: 9.3e13},
             },
         OCrust: {
-            InitMasses: {p: 4.5e18},
+            InitMasses: {p: 7.2e18},
             },
         Sediments: {
             InitMasses: {p: 4.0e18},
@@ -28,8 +28,8 @@
    Processes:
     ["Erosion","WindErosion","Subduction","Volcanism", "Precipitation","CometDelivery","Convection","HydrothermalCirculation",],
    
-   Erosion: {uniform_growth: false,
-   alpha: 2.18e-4,}, #m/yr, riverine erosion rate
+   Erosion: {uniform_growth: false,  #true for exponential decay in growth or false for branches
+   alpha: 2.2e-4,}, #m/yr, riverine erosion rate
        
     WindErosion: {uniform_growth: false, 
     beta: 2.7e-5, # kg.m⁻².yr⁻¹ wind erosion rate
@@ -58,7 +58,7 @@
     },
    
    Convection: {
-        tau: 1e9,  # Exp decay constant, yr
+        tau: 150e6,  # Exp decay constant, yr
         F0: 1e-8,  # Evolution of fraction of circulated mantle (from Laneuville et al)
         F1: 3e-8,  # Evolution of fraction of circulated mantle (from Laneuville et al)
     },
@@ -75,6 +75,9 @@
         Factor: 3, #factor of initial conditions (how many times more active the volcanism initially was)
         tau: 150e6, # Exp decay constant, yr
         density: 2800,
+        P_Conc_Ratio_MORB: 4.6,  #Present-day ratio of P content in MORB Lavas vs Upper Mantle
+        P_Conc_Ratio_ARC: 5.0,  #Present-day ratio of P content in Arc Volcanism Lavas vs Upper Mantle
+        P_Conc_Ratio_HS: 4.6,  #Present-day ratio of P content in Hotspot Volcanism Lavas vs Lower Mantle
     },
 
 

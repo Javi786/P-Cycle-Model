@@ -10,7 +10,7 @@ public:
         this->links.push_back("CCrust2 -> Oceans2");
         this->links.push_back("CCrust2 -> Sediments");
         this->isBidirectional = true;
-        this->numOutputs = 3;
+        this->numOutputs = 1;
         this->init_fluxes(2);
 
         alpha = config->data["Erosion"]["alpha"].as<double>();
@@ -36,11 +36,11 @@ public:
         } else {
             relative_area = 0.4*(0.66 + 0.34*(s->time-1.5e9)/3e9);
         }
-        if (uniform_growth) { relative_area = 0.4*(0.02 + 0.98*s->time/4.5e9); }
+        if (uniform_growth) { relative_area = 0.4 - 2.613e-3*exp(- s->time/0.15e9); }
 
         double concentration = s->world[co]->masses[p]/(M0); // wt% of P in the continental crust = 0.1% -> THIS
         //double concentration = 0.001; //Other option? is it better?
-        double flux = alpha*A0*rho*relative_area*concentration;   //           kg of P per year
+        double flux = alpha*A0*rho*relative_area*concentration;   //           kg of P per year. Present day = 5e-4 x 1.48e14 x 0.4 x 2700 x 0.001 = 8e10 kg of P /yr
 	double outflux = 0;
 	double oce_flux = flux;
 	

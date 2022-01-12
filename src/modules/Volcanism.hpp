@@ -2,9 +2,9 @@ class Volcanism: public Module {
 public:
     Volcanism(string name): Module(name) { init(); }
 
-    double F_arc, F_MORB, F_hotspot, Factor, tau;
+    double F_arc, F_MORB, F_hotspot, Factor, tau, P_Conc_Ratio_MORB, P_Conc_Ratio_ARC, P_Conc_Ratio_HS;
     int p, co, cr, um, lm;
-    bool uniform_growth = false;
+    bool uniform_growth;
     
 
     void init(void) {
@@ -20,8 +20,13 @@ public:
         F_arc = config->data["Volcanism"]["F_arc"].as<double>();
         F_MORB = config->data["Volcanism"]["F_MORB"].as<double>();
         F_hotspot = config->data["Volcanism"]["F_hotspot"].as<double>();
+        
         Factor = config->data["Volcanism"]["Factor"].as<double>();
         tau = config->data["Volcanism"]["tau"].as<double>();
+        P_Conc_Ratio_MORB = config->data["Volcanism"]["P_Conc_Ratio_MORB"].as<double>();
+        P_Conc_Ratio_ARC = config->data["Volcanism"]["P_Conc_Ratio_ARC"].as<double>();
+        P_Conc_Ratio_HS = config->data["Volcanism"]["P_Conc_Ratio_HS"].as<double>();
+        uniform_growth = config->data["Erosion"]["uniform_growth"].as<bool>();
         
         // oxidizing = 0.2 corresponds to partitioning in Jim's notes
         //oxidizing = config->data["man_ox"].as<double>();
@@ -50,9 +55,9 @@ public:
 	double lm_concentration = s->world[lm]->masses[p]/lm_volume;  //mass concentration of P in the Lower Mantle in kg/km³
 	double um_concentration = s->world[um]->masses[p]/um_volume;  //mass concentration of P in the Upper Mantle in kg/km³
 
-	double flux_arc = vol_factor*F_arc*um_concentration;          //mass flux of P in kg
-	double flux_MORB = vol_factor*F_MORB*um_concentration;
-	double flux_hotspot = vol_factor*F_hotspot*lm_concentration;
+	double flux_arc = vol_factor*F_arc*um_concentration*P_Conc_Ratio_ARC;          //mass flux of P in kg for Arc volcanism
+	double flux_MORB = vol_factor*F_MORB*um_concentration*P_Conc_Ratio_MORB;       //mass flux of P in kg for MORB volcanism
+	double flux_hotspot = vol_factor*F_hotspot*lm_concentration*P_Conc_Ratio_HS;   //mass flux of P in kg for Hotspot volcanism
 
 	double relative_area;
         if (s->time < 1.5e9) { 
@@ -60,7 +65,7 @@ public:
         } else {
             relative_area = 0.4*(0.66 + 0.34*(s->time-1.5e9)/3e9);
         }
-        if (uniform_growth) { relative_area = 0.4*(0.02 + 0.98*s->time/4.5e9); }
+        if (uniform_growth) { relative_area = 0.4 - 2.613e-3*exp(- s->time/0.15e9);  }
 
 
         s->world[um]->fluxes[p] -= (flux_arc + flux_MORB);

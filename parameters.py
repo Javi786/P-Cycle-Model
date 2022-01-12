@@ -17,4 +17,4 @@ p2 = {
    'vmax': 10
  }
 """
-generate_parameters([p1], n=100, default="./new_config.yaml")
+generate_parameters([p1], n=50, default="./new_config.yaml")

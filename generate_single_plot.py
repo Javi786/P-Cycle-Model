@@ -27,9 +27,9 @@ PARAMS = Parameters().params
 print(ARGS)
 
 
-#COLORS = ['black', 'green', 'brown', 'blue', 'red', 'cyan', 'grey']
-COLORS = ['black', 'green', 'red']
-#COLORS = ['brown', 'blue', 'red']
+COLORS = ['black', 'red', 'orange', 'blue', 'lawngreen', 'cyan', 'grey']
+#COLORS = ['black', 'lawngreen', 'red']
+#COLORS = ['orange', 'blue', 'lawngreen']
 STYLES = ['-', ':', '-.', '--']
 
 FIG = plt.figure(figsize=(8, 8))
@@ -87,7 +87,7 @@ def plot_time_evolution(ARGS):
             
             reservoir = ARGS.legend[counts_reservoirs]
             h = plt.fill_between(x_vals, min_vals, max_vals,
-                                 lw=None, edgecolor=COLORS[i], facecolor=COLORS[i], label = str(reservoir))
+                                 lw=None, edgecolor=COLORS[i], facecolor=COLORS[i], label = str(reservoir), alpha=0.65)
             handles.append(h)
             counts_reservoirs += 1
             
@@ -103,11 +103,11 @@ def plot_time_evolution(ARGS):
                 print(reservoir)
             
             if ARGS.notation:
-               plt.title(ARGS.notation, x=0.9, y=0.12)    
+               plt.title(ARGS.notation, x=0.9, y=0.15)    
         
     plt.ylabel(PARAMS[ARGS.columns[0]].ylabel)
     plt.xlabel('Time [Ma]')
-    plt.legend(bbox_to_anchor=(1.5, 1), loc=2 ,fontsize = 12)
+    plt.legend(bbox_to_anchor=(0.68, 1), loc=2 ,fontsize = 12)
     plt.xlim(-20, 4520)
     plt.xticks(np.arange(500, 5500, 1000))
     

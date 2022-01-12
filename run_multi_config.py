@@ -19,8 +19,8 @@ logging.basicConfig(level=logging.DEBUG,
 FNULL = open(os.devnull, "w")
 
 PARSER = argparse.ArgumentParser()
-#PARSER.add_argument('-f', '--folder', default='/home/javi/BMSIS/Modelling/P-Cycle-main-sed/parameters_files') #Don't forget to add this here!
-PARSER.add_argument('-f', '--folder', default='/home/javi/BMSIS/Modelling/P-Cycle-main-sed/seedings_files')   
+PARSER.add_argument('-f', '--folder', default='/home/javi/BMSIS/Modelling/P-Cycle-main-sed/parameters_files') #Don't forget to add this here!
+#PARSER.add_argument('-f', '--folder', default='/home/javi/BMSIS/Modelling/P-Cycle-main-sed/seedings_files')   
 ARGS = PARSER.parse_args()
 
 to_pop = []

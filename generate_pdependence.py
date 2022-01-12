@@ -21,13 +21,13 @@ PARAMS['Oceans0'] = {'norm':4.18e13, 'ylabel':'Oceans P-concentration [\u03bcM]'
 #PARAMS['Oceans2'] = {'norm':2.4e16, 'ylabel':'N-content [mM]', 'isLog':True, 'Earth':3e-4}
 #PARAMS['LMantle2'] = {'norm':2.5e16, 'ylabel':'N-content [ppm]', 'isLog':False, 'Earth':1}
 #PARAMS['UMantle2'] = {'norm':9.6e17, 'ylabel':'N-content [ppm]', 'isLog':False, 'Earth':1}
-PARAMS['OCrust0'] = {'norm':8.7e18, 'ylabel':'Oceanic Crust P-content [PEL]', 'isLog':True, 'Earth':1}
-PARAMS['Sediments0'] = {'norm':4.03e18, 'ylabel':'Marine Sediments P-content [PEL]', 'isLog':True, 'Earth':1}
-PARAMS['CCrust0'] = {'norm':1.3e19, 'ylabel':'Continental Crust P-content [PEL]', 'isLog':True, 'Earth':1}
-#PARAMS['UMantle0'] = {'norm':2.2e20, 'ylabel':'Upper Mantle P-content [PEL]', 'isLog':True, 'Earth':1}
-PARAMS['UMantle0'] = {'norm':1.1e18, 'ylabel':'Upper Mantle P-concentration [ppm]', 'isLog':True, 'Earth':1}
-#PARAMS['LMantle0'] = {'norm':6e20, 'ylabel':'Lower Mantle P-content [PEL]', 'isLog':True, 'Earth':1}
-PARAMS['LMantle0'] = {'norm':3e18, 'ylabel':'Lower Mantle P-concentration [ppm]', 'isLog':True, 'Earth':1}
+PARAMS['OCrust0'] = {'norm':7.2e18, 'ylabel':'OC P-content [PEL]', 'isLog':True, 'Earth':1}
+PARAMS['Sediments0'] = {'norm':4.03e18, 'ylabel':'MS P-content [PEL]', 'isLog':True, 'Earth':1}
+PARAMS['CCrust0'] = {'norm':1.3e19, 'ylabel':'CC P-content [PEL]', 'isLog':True, 'Earth':1}
+PARAMS['UMantle0'] = {'norm':2.2e20, 'ylabel':'UM P-content [PEL]', 'isLog':True, 'Earth':1}
+#PARAMS['UMantle0'] = {'norm':1.1e18, 'ylabel':'Upper Mantle P-concentration [ppm]', 'isLog':True, 'Earth':1}
+PARAMS['LMantle0'] = {'norm':6e20, 'ylabel':'LM P-content [PEL]', 'isLog':True, 'Earth':1}
+#PARAMS['LMantle0'] = {'norm':3e18, 'ylabel':'Lower Mantle P-concentration [ppm]', 'isLog':True, 'Earth':1}
 #PARAMS['Volcanism0'] = {'norm':1e11, 'ylabel':'Degassing rate [10$^{11}$ kg yr$^{-1}$]', 'isLog':False}
 #PARAMS['Volcanism1'] = {'norm':1e11, 'ylabel':'Degassing rate [10$^{11}$ kg yr$^{-1}$]', 'isLog':False}
 #PARAMS['Volcanism2'] = {'norm':1e11, 'ylabel':'Degassing rate [10$^{11}$ kg yr$^{-1}$]', 'isLog':False}
@@ -37,19 +37,19 @@ PARAMS_DEFAULT = {'norm':1, 'ylabel':'[]', 'isLog':True, 'Earth':1}
 PROPERTIES = {}
 
 
-#PROPERTIES['subrate-050'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #e-5 e-2
-#PROPERTIES['subrate-100'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #this one!!!
-#PROPERTIES['subrate-150'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'}
+PROPERTIES['subrate-050'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #e-5 e-2
+PROPERTIES['subrate-100'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #this one!!!
+PROPERTIES['subrate-150'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'}
 
 
 PROPERTIES['accretion-25'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #e-5 e-2
 PROPERTIES['accretion-50'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'}
 PROPERTIES['accretion-75'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'}
-
+"""
 PROPERTIES['subrate-050'] = {'xlabel':'Maximum Ocean Concentration of P [M]'} #0.1e-6 100e-6
 PROPERTIES['subrate-100'] = {'xlabel':'Maximum Ocean Concentration of P [M]'} #this one!!!
 PROPERTIES['subrate-150'] = {'xlabel':'Maximum Ocean Concentration of P [M]'}
-"""
+
 PROPERTIES['subrate-050'] = {'xlabel':'Continental Accretion Efficiency'} #0-1
 PROPERTIES['subrate-100'] = {'xlabel':'Continental Accretion Efficiency'} #this one!!!
 PROPERTIES['subrate-150'] = {'xlabel':'Continental Accretion Efficiency'}
@@ -66,6 +66,10 @@ PROPERTIES['subrate-150'] = {'xlabel':'Continental Accretion Efficiency'}
 PROPERTIES['factor-01'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #1e-5 1e-2
 PROPERTIES['factor-05'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #this one!!!
 PROPERTIES['factor-10'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'}
+
+PROPERTIES['Fac-1'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #1e-5 1e-2
+PROPERTIES['Fac-4.6'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'} #this one!!!
+PROPERTIES['Fac-10'] = {'xlabel':'Erosion rate [m yr$^{-1}$]'}
 
 
 PROPERTIES['manmix-25'] = {'xlabel':'Mantle mixing rate [-]'}
@@ -294,9 +298,10 @@ def labelLines(lines,align=True,xvals=None,legend=None,**kwargs):
     for line,x,label in zip(labLines,xvals,labels):
         labelLine(line,x,label,align,**kwargs)
 
-labelLines(plt.gca().get_lines(), xvals=[1e-3, 1e-3, 1e-3], legend=ARGS.legend, zorder=2.5)
+labelLines(plt.gca().get_lines(), xvals=[3e-5, 2e-4, 2.2e-3], legend=ARGS.legend, zorder=2.5) #change
 
-plt.axvline(5e-4, ls='--', lw=2, color='black')
+plt.axvline(2.2e-4, ls='--', lw=2, color='black')
+plt.axhline(1, ls='--', lw=2, color='black')
 if ARGS.notation:
     plt.title(ARGS.notation, x=0.9, y=0.6)
 

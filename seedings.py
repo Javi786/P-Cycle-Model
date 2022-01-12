@@ -49,4 +49,4 @@ r7 = {
    'vmin': 1e18,
    'vmax': 8.4e20
 }
-generate_reservoirs([r1, r2, r3, r4, r5, r6, r7], m=8.4e20, n=30, default="./new_config.yaml")
+generate_reservoirs([r1, r2, r3, r4, r5, r6, r7], m=8.4e20, n=50, default="./new_config.yaml")
