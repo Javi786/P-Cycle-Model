@@ -26,7 +26,7 @@
             },
    
    Processes:
-    ["Erosion","WindErosion","Subduction","Volcanism", "Precipitation","CometDelivery","Convection","HydrothermalCirculation",],
+    ["Erosion","WindErosion","Subduction","Volcanism", "Precipitation","ETDelivery","Convection","HTCirculation",],
    
    Erosion: {uniform_growth: false,  #true for exponential decay in growth or false for branches
    alpha: 2.2e-4,}, #m/yr, riverine erosion rate
