@@ -1,6 +1,6 @@
-class HydrothermalCirculation: public Module {
+class HTCirculation: public Module {
 public:
-    HydrothermalCirculation(string name): Module(name) { init(); }
+    HTCirculation(string name): Module(name) { init(); }
 
     double tau, F_p, F0, F1;
     int p, cr, oc;
@@ -13,12 +13,12 @@ public:
         this->numOutputs = 1;
         this->init_fluxes(1);
 
-        F0 = config->data["HydrothermalCirculation"]["F0"].as<double>();
+        F0 = config->data["HTCirculation"]["F0"].as<double>();
         F1 = 3*F0; //config->data["HydrothermalCirculation"]["F1"].as<double>();
         //F_NOx = config->data["HydrothermalCirculation"]["F_NOx"].as<double>();
         //F_N2 = config->data["HydrothermalCirculation"]["F_N2"].as<double>();
-        F_p = config->data["HydrothermalCirculation"]["F_p"].as<double>();
-        tau = config->data["HydrothermalCirculation"]["tau"].as<double>();
+        F_p = config->data["HTCirculation"]["F_p"].as<double>();
+        tau = config->data["HTCirculation"]["tau"].as<double>();
 
         //n2 = s->element_map["n2"];
         //nox = s->element_map["nox"];
@@ -41,12 +41,12 @@ public:
         s->world[oc]->fluxes[p] += -f_p;
         s->world[cr]->fluxes[p] += f_p;
 
-	cout << "HydrothermalCirculation::f_p::" << -f_p << endl;
+	cout << "HTCirculation::f_p::" << -f_p << endl;
 
         if(DEBUG) {
             //cout << "HydrothermalCirculation::f_NOx::" << f_NOx << endl;
             //cout << "HydrothermalCirculation::f_N2::" << f_N2 << endl;
-            cout << "HydrothermalCirculation::f_p::" << f_p << endl;
+            cout << "HTCirculation::f_p::" << f_p << endl;
         }
 
         vector<double> output = {f_p};
@@ -65,4 +65,4 @@ public:
         return false;
     }
 };
-REGISTER_MODULE(HydrothermalCirculation)
+REGISTER_MODULE(HTCirculation)
