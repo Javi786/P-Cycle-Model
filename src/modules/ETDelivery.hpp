@@ -1,6 +1,6 @@
-class CometDelivery: public Module {
+class ETDelivery: public Module {
 public:
-    CometDelivery(string name): Module(name) { init(); }
+    ETDelivery(string name): Module(name) { init(); }
 
     double p, tau, F0, F1, max_conc, VOcean; //this
     bool uniform_growth;
@@ -12,9 +12,9 @@ public:
         this->numOutputs = 1;
         this->init_fluxes(1);
 
-        F0 = config->data["CometDelivery"]["F0"].as<double>();
-        F1 = config->data["CometDelivery"]["F1"].as<double>();
-        tau = config->data["CometDelivery"]["tau"].as<double>();
+        F0 = config->data["ETDelivery"]["F0"].as<double>();
+        F1 = config->data["ETDelivery"]["F1"].as<double>();
+        tau = config->data["ETDelivery"]["tau"].as<double>();
         max_conc = config->data["Precipitation"]["max_conc"].as<double>(); //this
         VOcean = config->data["Precipitation"]["VOcean"].as<double>(); //Volume of the Ocean in Liters 
         uniform_growth = config->data["Erosion"]["uniform_growth"].as<bool>();
@@ -65,9 +65,9 @@ public:
         s->world[sed]->fluxes[p] += outflux; //this
         s->world[co]->fluxes[p] += Cont_flux; //this
 
-	cout << "CometDelivery to ocean flux:: " << oce_flux << " to sediments flux " << outflux << endl;
+	cout << "ETDelivery to ocean flux:: " << oce_flux << " to sediments flux " << outflux << endl;
 	
-        if(DEBUG) cout << "CometDelivery::flux::" << flux << endl;
+        if(DEBUG) cout << "ETDelivery::flux::" << flux << endl;
 
         vector<double> output = {total_flux};
         this->fluxes.push_back(output);
@@ -85,4 +85,4 @@ public:
         return false;
     }
 };
-REGISTER_MODULE(CometDelivery)
+REGISTER_MODULE(ETDelivery)
