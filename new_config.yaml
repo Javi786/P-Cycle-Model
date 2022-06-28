@@ -44,13 +44,13 @@
    uniform_growth: false,}, #not relevant
    
    
-   CometDelivery: {
+   ETDelivery: {
         tau: 0.15e9, #yr
         F0: 2e5, #present-day flux, kg/yr value (well constrained)
         F1: 2e8, # LHB rate, kg/yr (x1000 larger than F0, ???)
     },
    
-   HydrothermalCirculation: {
+   HTCirculation: {
         tau: 150e6, # Exp decay constant, yr
         F0: 1e-7,   # Evolution of fraction of circulated ocean water, present-day
         F1: 3e-7,   # Evolution of fraction of circulated ocean water, Early earth (from Laneuville et al)
