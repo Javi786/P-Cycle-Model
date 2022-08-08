@@ -1,5 +1,5 @@
 # P-Cycle-Model
-"Earth Without Life 2: A Global Network Model of Abiotic Phosphorus Cycling on Earth Through Time"
+"A Global Network Model of Abiotic Phosphorus Cycling on Earth Through Time"
 by Marcos Jusino-Maldonado, Rafael Rianço, Javed Akhter Mondal, Matthew Pasek, Matthieu Laneuville and H. James Cleaves II
 
 Project Description:
