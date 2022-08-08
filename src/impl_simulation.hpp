@@ -1,7 +1,7 @@
 void Simulation::run(void) {
 
     double lastout = 0;
-    double tstep = this->timestep/1000;
+    double tstep = this->timestep    //1000;
     int lastscreen = 0;
     cout << tstep << endl;
     while(this->time < this->tmax) {
